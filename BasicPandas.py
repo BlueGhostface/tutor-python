@@ -1,7 +1,7 @@
 ﻿import pandas as pd
 
 
-data = [[101, "Ulysses", 13], [53, "William", 10], [128, "Henry", 6], [3, "Henry", 11]]
+data = [[101, "Ulysses", 13], [53, "William", 10], [128, "Henry", 6],]
 
 def createDataframe( inputDataframe ):
     column_names = ["student_id","name", "age"]
@@ -17,15 +17,24 @@ def selectFirstRows(inputDataframe):
 def selectSpecificData(inputDataframe):
     return inputDataframe.loc[inputDataframe['student_id'] == 101, ['name','age']] # select the name and age of the student with id 101
 
-def createScoreColumn(inputDataframe) -> pd.DataFrame:
+def createScoreColumn(inputDataframe):
 
-    inputDataframe['score'] = [100, 200, 100,150] # create a new column called score
+    inputDataframe['score'] = [100, 200, 100] # create a new column called score
     return inputDataframe
 
-def createtotalColumn(inputDataframe) -> pd.DataFrame:
+def createtotalColumn(inputDataframe):
     inputDataframe['total'] = inputDataframe['score'] * 1.5 # multiply the score by 1.5
     return inputDataframe
 
+def dropMissingData(inputDataframe):
+    #first adding data with an emtpy field
+    data = pd.DataFrame({"student_id": [7], "age": [10]})
+    inputDataframe = pd.concat([inputDataframe, data])
+    print("\n dataframe with empty data")
+    print(inputDataframe)
+    inputDataframe.dropna(subset=['name'], inplace=True)
+    print("\n dataframe without empty data")
+    print(inputDataframe)
 
 
 def main():
@@ -48,5 +57,8 @@ def main():
 
     print("\ncreate total column")
     print(createtotalColumn(students))
+
+    print("\n drop name column")
+    dropMissingData(students)
 
 main()
