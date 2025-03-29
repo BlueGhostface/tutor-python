@@ -68,6 +68,6 @@ def main():
     dropMissingData(students)
 
     print("\n modify score column")
-    print(modifySalaryColumn(students))
+    print(modifyScoreColumn(students))
 
 main()
