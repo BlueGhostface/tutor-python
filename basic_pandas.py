@@ -37,6 +37,12 @@ def dropMissingData(inputDataframe):
     print(inputDataframe)
 
 
+
+
+def modifyScoreColumn(inputDF):
+    inputDF['score'] = inputDF['score'] * 2
+    return inputDF
+
 def main():
     students = createDataframe(data)
 
@@ -60,5 +66,8 @@ def main():
 
     print("\n drop name column")
     dropMissingData(students)
+
+    print("\n modify score column")
+    print(modifySalaryColumn(students))
 
 main()
