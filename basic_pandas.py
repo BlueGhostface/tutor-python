@@ -43,6 +43,19 @@ def modifyScoreColumn(inputDF):
     inputDF['score'] = inputDF['score'] * 2
     return inputDF
 
+
+def renameColumns(students):
+    students = students.rename(
+        columns={
+            "id": "student_id",
+            "name": "first_name",
+            "age": "age_in_years",
+            "score": "overal_points"
+        }
+    )
+    return students
+
+
 def main():
     students = createDataframe(data)
 
@@ -70,4 +83,6 @@ def main():
     print("\n modify score column")
     print(modifyScoreColumn(students))
 
+    print("\n rename columns")
+    print(renameColumns(students))
 main()
