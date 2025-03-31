@@ -19,7 +19,7 @@ def selectSpecificData(inputDataframe):
 
 def createScoreColumn(inputDataframe):
 
-    inputDataframe['score'] = [100, 200, 100] # create a new column called score
+    inputDataframe['score'] = [100.0, 200.0, 100.0] # create a new column called score
     return inputDataframe
 
 def createtotalColumn(inputDataframe):
@@ -50,9 +50,14 @@ def renameColumns(students):
             "id": "student_id",
             "name": "first_name",
             "age": "age_in_years",
-            "score": "overal_points"
+            "score": "points"
         }
     )
+    return students
+
+
+def changeDatatype(students):
+    students['score'] = students['score'].astype(int)
     return students
 
 
@@ -85,4 +90,10 @@ def main():
 
     print("\n rename columns")
     print(renameColumns(students))
+
+    print("\n change datatype")
+    print(students['score'])
+    print(changeDatatype(students))
+    print(students['score'])
+
 main()
