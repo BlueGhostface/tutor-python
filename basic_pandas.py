@@ -1,10 +1,14 @@
 ﻿import pandas as pd
 
 
-data = [[101, "Ulysses", 13], [53, "William", 10], [128, "Henry", 6],]
+student_data = [[101, "Ulysses", 13], [53, "William", 10], [128, "Henry", 6],]
+student_column_names = ["student_id","name", "age"]
 
-def createDataframe( inputDataframe ):
-    column_names = ["student_id","name", "age"]
+product_data = [["salt",100, 2, 3],["sugar",200, 5, pd.NA],["pepper", 10, 5, pd.NA]]
+product_column_names = ["product_name", "quantity", "price", "in_stock"]
+
+def createDataframe( inputDataframe, column_names):
+
     data = pd.DataFrame(inputDataframe, columns=column_names) # create a dataframe with the data and column names
     return data
 
@@ -61,8 +65,18 @@ def changeDatatype(students):
     return students
 
 
+def fillMissingValues(products):
+
+    # products['in_stock'].fillna(0, inplace=True)
+    products.fillna({'in_stock': 0}, inplace=True)
+    return products
+
+
 def main():
-    students = createDataframe(data)
+    students = createDataframe(student_data , student_column_names)
+    products = createDataframe(product_data , product_column_names)
+
+
 
     print("\nstudents")
     print(students)
@@ -95,5 +109,12 @@ def main():
     print(students['score'])
     print(changeDatatype(students))
     print(students['score'])
+
+
+    print("\n fill missing values")
+    print(products)
+    print("now filling vallues")
+    print(fillMissingValues(products))
+    print(products)
 
 main()
