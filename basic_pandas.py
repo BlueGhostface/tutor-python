@@ -2,10 +2,14 @@
 
 
 student_data = [[101, "Ulysses", 13], [53, "William", 10], [128, "Henry", 6],]
+
 student_column_names = ["student_id","name", "age"]
 
 product_data = [["salt",100, 2, 3],["sugar",200, 5, pd.NA],["pepper", 10, 5, pd.NA]]
 product_column_names = ["product_name", "quantity", "price", "in_stock"]
+
+student_data2 = [[101, "Marcus", 17, 100.0], [53, "Wilson", 15, 95.0], [128, "Tom", 19, 65.0],]
+student_column_names2 = ["student_id","name", "age", "score"]
 
 def createDataframe( inputDataframe, column_names):
 
@@ -72,9 +76,15 @@ def fillMissingValues(products):
     return products
 
 
+def concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame):
+    return pd.concat([df1, df2], axis=0)
+
+
+
 def main():
     students = createDataframe(student_data , student_column_names)
     products = createDataframe(product_data , product_column_names)
+    students2 = createDataframe(student_data2, student_column_names2)
 
 
 
@@ -117,4 +127,7 @@ def main():
     print(fillMissingValues(products))
     print(products)
 
+
+    print("\n concatenate tables")
+    print(concatenateTables(students, students2))
 main()
