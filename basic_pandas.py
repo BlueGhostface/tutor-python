@@ -80,6 +80,30 @@ def concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame):
     return pd.concat([df1, df2], axis=0)
 
 
+weather_data = [ ["NewYork", "January", 30],
+                ["NewYork", "February", 20],
+                ["NewYork", "March", 25],
+                ["NewYork", "April", 15],
+                ["NewYork", "May", 10],
+                ["LosAngeles", "January", 40],
+                ["LosAngeles", "February", 50],
+                ["LosAngeles", "March", 60],
+                ["LosAngeles", "April", 70],
+                ["LosAngeles", "May", 80],
+                ["Chicago", "January", 5],
+                ["Chicago", "February", 10],
+                ["Chicago", "March", 15],
+                ["Chicago", "April", 20],
+                ["Chicago", "May", 25]]
+
+
+def pivotTable(weather):
+    ans = weather.pivot(index='month', columns='city', values='temperature')
+    month_order = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    ans = ans.reindex(month_order)
+    return ans
+
+
 
 def main():
     students = createDataframe(student_data , student_column_names)
@@ -127,7 +151,14 @@ def main():
     print(fillMissingValues(products))
     print(products)
 
-
     print("\n concatenate tables")
     print(concatenateTables(students, students2))
+
+    print("\n pivot table")
+    weather = createDataframe(weather_data, ["city", "month", "temperature"])
+    print(weather)
+    print(pivotTable(weather))
+
+
+
 main()
