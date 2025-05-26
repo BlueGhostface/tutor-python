@@ -35,3 +35,18 @@
         return time_parts[0]
     else:
         return ', '.join(time_parts[:-1]) + " and " + time_parts[-1]
+
+
+def test_cases():
+    print(format_duration(0))
+    print(format_duration(1))
+    print(format_duration(62))
+    print(format_duration(120))
+    print(format_duration(3600))
+    print(format_duration(50000))
+    print(format_duration(123456789))
+    print(format_duration(333333333))
+    print(format_duration(284481174))
+    print(format_duration(1122334455))
+
+test_cases()
